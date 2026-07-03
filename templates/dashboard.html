@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Premium Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  display: flex;
+  background: linear-gradient(135deg, #eef2ff, #f8f6ff);
+  transition: 0.3s;
+}
+
+/* 🌙 DARK MODE */
+.dark {
+  background: #121212;
+  color: #fff;
+}
+
+/* 🔥 SIDEBAR */
+.sidebar {
+  width: 230px;
+  height: 100vh;
+  background: linear-gradient(180deg, #6a11cb, #2575fc);
+  padding: 25px;
+  color: white;
+  position: fixed;
+}
+
+.sidebar h2 {
+  margin-bottom: 30px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateX(5px);
+}
+
+/* 🔥 MAIN */
+.main {
+  margin-left: 230px;
+  width: 100%;
+}
+
+/* 🔥 HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #ddd;
+}
+
+.header button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #6a11cb;
+  color: white;
+}
+
+/* 🔥 SECTION */
+.section {
+  margin: 25px;
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* 🔥 PROFILE */
+img {
+  width: 90px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 3px solid #6a11cb;
+}
+
+input[type="file"] {
+  margin-top: 10px;
+}
+
+button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  background: #6a11cb;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* 🔥 CARDS */
+.cards {
+  display: flex;
+  gap: 20px;
+  padding: 0 25px;
+}
+
+.card {
+  flex: 1;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  background: linear-gradient(135deg, #ffffff, #f3f0ff);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+/* 🔥 CHART */
+canvas {
+  margin-top: 10px;
+}
+</style>
+</head>
+
+<body id="body">
+
+<div class="sidebar">
+  <h2>✨ My App</h2>
+  <a href="#">🏠 Dashboard</a>
+  <a href="/logout">🚪 Logout</a>
+</div>
+
+<div class="main">
+
+<div class="header">
+  <h3>Welcome, {{ email }} 👋</h3>
+  <button onclick="toggleMode()">🌙</button>
+</div>
+
+<div class="section">
+  <h3>👤 Profile</h3>
+
+  {% if image %}
+    <img src="{{ image }}">
+  {% endif %}
+
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <br>
+    <button>Upload</button>
+  </form>
+</div>
+
+<div class="cards">
+  <div class="card">👥 Users<br><h2>{{ total_users }}</h2></div>
+  <div class="card">📊 Activity<br><h2>High</h2></div>
+  <div class="card">🔐 Security<br><h2>Safe</h2></div>
+</div>
+
+<div class="section">
+  <h3>📈 Weekly Activity</h3>
+  <canvas id="chart"></canvas>
+</div>
+
+</div>
+
+<script>
+function toggleMode() {
+  document.getElementById("body").classList.toggle("dark");
+}
+
+new Chart(document.getElementById("chart"), {
+  type: "line",
+  data: {
+    labels: ["Mon","Tue","Wed","Thu","Fri"],
+    datasets: [{
+      label: "Users",
+      data: [5,8,6,10,7],
+      borderWidth: 3,
+      tension: 0.4
+    }]
+  }
+});
+</script>
+
+</body>
+</html>

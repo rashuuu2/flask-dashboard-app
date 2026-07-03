@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+<div class="container">
+<h2>Login</h2>
+
+<form action="/login" method="POST">
+
+<div class="input-box">
+<span>📧</span>
+<input type="email" name="email" placeholder="Email" required>
+</div>
+
+<div class="input-box">
+<span>🔒</span>
+<input type="password" name="password" placeholder="Password" required>
+</div>
+
+<div class="options">
+<label><input type="checkbox"> Remember me</label>
+<a href="#">Forgot?</a>
+</div>
+
+<button type="submit">Login</button>
+
+</form>
+
+<div class="social">
+<i class="fab fa-google"></i>
+<i class="fab fa-facebook"></i>
+<i class="fab fa-apple"></i>
+</div>
+
+<p>Don't have account? <a href="/signup">Signup</a></p>
+
+</div>
+</body>
+</html>

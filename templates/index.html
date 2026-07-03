@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+<h2>Welcome to Login</h2>
+
+<form onsubmit="loginUser(event)">
+
+<div class="input-box">
+<span class="icon">📧</span>
+<input type="email" id="email" placeholder="Email" required>
+</div>
+
+<div class="input-box">
+<span class="icon">🔒</span>
+<input type="password" id="password" placeholder="Password" required>
+<span class="toggle-password" onclick="togglePassword()">👁️</span>
+</div>
+
+<div class="row">
+<label><input type="checkbox"> Remember me</label>
+<a href="#">Forgot?</a>
+</div>
+
+<button class="login-btn">Login</button>
+
+<p>or</p>
+
+<div class="social">
+<div class="icon-box google">G</div>
+<div class="icon-box facebook">f</div>
+<div class="icon-box apple"></div>
+</div>
+
+</form>
+
+<p>Don't have account? <a href="/signup">Signup</a></p>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
