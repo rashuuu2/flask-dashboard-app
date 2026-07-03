@@ -39,10 +39,13 @@ login-page/
 1. Clone the repository
 ```bash
 git clone https://github.com/rashuuu2/flask-dashboard-app.git
+
 2. Navigate to project folder
 cd flask-dashboard-app
+
 3. Install dependencies
 pip install flask
+
 4. Run the app
 python app.py
 
